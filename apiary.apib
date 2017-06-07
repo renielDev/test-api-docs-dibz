@@ -1,80 +1,48 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://staging.api.dibzparking.com/
 
-# Polls API Test Update
+# Customer
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Customer Resource
 
-## Questions Collection [/questions]
+## Customer Collection [/customer]
 
-### List All Questions [GET]
+### Customer Registration [POST]
 
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+You may register a new customer using this action.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "first_name" : "John",
+            "last_name" : "Doe",
+            "middle_name" : "Smith",
+            "email" : "john.doe@gmail.com",
+            "password" : "password",
+            "password_confirmation" : "password",
+            "refer_code" : "XjIs21J",
+            "contact" : "09185413111",
+            "facebook_id" : "xSkIpqL12kNl1AsEswndInwkNi..."
+            "google_id" : "aiwnLIWNLSn12NASli12nAl..."
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+        {
+            "status" : true,
+            "code" : 200,
+            "data" : {
+            "email": "john.doe@gmail.com",
+            "refer_code" : "A638yUS9nq",
+            "access_level" : "customer",
+            "id" : 1,
+            "user_info" : {
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "middle_name": "Smith",
+                    "contact": "09185413111",
+                    "users_id": 1,
+                    "id": 1
+                }
             }
+        }

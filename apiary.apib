@@ -1,15 +1,115 @@
 FORMAT: 1A
 HOST: http://staging.api.dibzparking.com/
 
-# Customer
+# Dibz Api Docs
 
-Customer Resource
+This is the official documentation of DibzTech API.
 
-## Customer Collection [/customer]
+## Group Authentication
+
+### Login contact or email [POST /auth/login]
+
++ Request (application/json)
+
+        {
+            "email" : "john.doe@gmail.com",
+            "password" : "password"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "data": {
+                "id": 1,
+                "company": "",
+                "email": "john.doe@gmail.com",
+                "api_token": "hJmD33AaHCF5oLvbUlIGcVjMB6H0t1I0Skndi213asDWnOw...",
+                "refer_code": "xnsL23I",
+                "active": "yes",
+                "access_level": "customer",
+                "verify_status": 1,
+                "property_type": "non-residential",
+                "users_id": null,
+                "garages_id": null
+            }
+        }
+
+### Login facebook [POST /auth/login/fb]
+
++ `access_token` - (string) Facebook Auth Token
+
++ Request (application/json)
+
+        {
+            "access_token" : "xsiNSLwIsjql212NsliSDkwnERiwl..."
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "data": {
+                "id": 1,
+                "company": "",
+                "email": "john.doe@gmail.com",
+                "api_token": "hJmD33AaHCF5oLvbUlIGcVjMB6H0t1I0Skndi213asDWnOw...",
+                "refer_code": "xnsL23I",
+                "active": "yes",
+                "access_level": "customer",
+                "verify_status": 1,
+                "property_type": "non-residential",
+                "users_id": null,
+                "garages_id": null
+            }
+        }
+
+### Login gmail [POST /auth/login/gmail]
+
++ `access_token` - (string) Gmail Auth Token
+
++ Request (application/json)
+
+        {
+            "access_token" : "xsiNSLwIsjql212NsliSDkwnERiwl..."
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "data": {
+                "id": 1,
+                "company": "",
+                "email": "john.doe@gmail.com",
+                "api_token": "hJmD33AaHCF5oLvbUlIGcVjMB6H0t1I0Skndi213asDWnOw...",
+                "refer_code": "xnsL23I",
+                "active": "yes",
+                "access_level": "customer",
+                "verify_status": 1,
+                "property_type": "non-residential",
+                "users_id": null,
+                "garages_id": null
+            }
+        }
+
+## Customer Register [/customer]
 
 ### Customer Registration [POST]
 
 You may register a new customer using this action.
+
++ `first_name` - (string)
++ `last_name` - (string)
++ `middle_name` - (string)
++ `contact` - (numeric, unique)
++ `gender` - (string)
++ `address` - (string)
++ `email` - (email, unique) Required if no contact no. supplied
++ `password` - (string, minimum=6) Required if no facebook_id and google_id
++ `password_confirmation` - (string, matches_password_field)
++ `facebook_id` - (string, unique)
++ `google_id` - (string, unique)
 
 + Request (application/json)
 
@@ -32,11 +132,57 @@ You may register a new customer using this action.
             "status" : true,
             "code" : 200,
             "data" : {
-            "email": "john.doe@gmail.com",
-            "refer_code" : "A638yUS9nq",
-            "access_level" : "customer",
-            "id" : 1,
-            "user_info" : {
+                "email": "john.doe@gmail.com",
+                "refer_code" : "A638yUS9nq",
+                "access_level" : "customer",
+                "id" : 1,
+                "user_info" : {
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "middle_name": "Smith",
+                    "contact": "09185413111",
+                    "users_id": 1,
+                    "id": 1
+                }
+            }
+        }
+
+## Customer Update Profile [/customer/{customer_id}?api_token={api_token}]
+
+### Update Customer Profile [POST]
+
++ Parameter
+    + api_token (string)
+    + customer_id (numeric) - Account Id of the customer to update.
+
++ Request (application/json)
+
+        {
+            "first_name" : "John",
+            "last_name" : "Doe",
+            "middle_name" : "Smith",
+            "contact" : "09185413111",
+            "gender" : "male",
+            "birth_date" : "1994-11-17",
+            "address" : "Julia Vargas, Pasig City",
+            "email" : "john.doe@gmail.com",
+            "password" : "old_password",
+            "new_password" : "new_password",
+            "new_password_confirmation" : "new_password",
+            "_method" : "PUT"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status" : true,
+            "code" : 200,
+            "data" : {
+                "email": "john.doe@gmail.com",
+                "refer_code" : "A638yUS9nq",
+                "access_level" : "customer",
+                "id" : 1,
+                "user_info" : {
                     "first_name": "John",
                     "last_name": "Doe",
                     "middle_name": "Smith",

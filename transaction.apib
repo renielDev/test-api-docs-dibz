@@ -1,0 +1,181 @@
+## Group Transaction
+
+### Reserve a parking in commercial garage [POST /parking/reserve?api_token={api_token}]
+
+You may use this action to make a reservation request to a commercial garage.
+
++ `latitude` - (required, numeric)
++ `longitude` - (required, numeric)
++ `car_plate_no` - (required, string)
++ `car_model` - (required, string)
++ `estimated_time` - (required, numeric) estimated time in seconds.
++ `garages_id` - (required, numeric)
+
++ Parameters
+    + api_token (required)
+
++ Request (application/json)
+
+        {
+            "latitude" : "102.10222",
+            "longitude" : "122.10222"
+            "car_model" : "Toyota Vios"
+            "car_plate_no" : "234XsI"
+            "estimated_time" : "300"
+            "garages_id" : "20"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200,
+            "data": {
+                "status": "pending",
+                "estimated_time" : "300"
+                "day_of_week": "monday",
+                "rate": "80.00",
+                "hours": 3,
+                "succeeding_rate": "60.00",
+                "succeeding_hours": 1,
+                "type": "hourly",
+                "service_rate": 0.3,
+                "latitude" : "102.10222",
+                "longitude" : "122.10222",
+                "car_model" : "Toyota Vios",
+                "car_plate_no" : "234XsI",
+                "slots_id": 2962,
+                "expire_at": "2017-06-19 19:42:48",
+                "floors_id": 35,
+                "garages_id": 20,
+                "owners_id": 33,
+                "customers_id": 22,
+                "created_at": "2017-06-19 17:02:48",
+                "is_valet": false,
+                "id": 274
+            }
+        }
+
+### Cancel a Reservation [POST /parking/{transaction_id}/status/cancelled?api_token={api_token}]
+
+You may use this action to cancel a reservation.
+
++ Parameters
+    + transaction_id (required)
+    + api_token (required)
+
++ Response 200 (application/json)
+        {
+            "status" : true,
+            "code" : 200,
+        }
+
+### Get list of transactions [POST /user/transaction/{status}?api_token={api_token}]
+
+You may use this action to get list of customer's transaction.
+
++ Parameters
+    + api_token (required)
+    + status (required) - could be (all, pending, ongoing, cancelled, expired)
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200,
+            "data": [
+                {
+                    "id": 274,
+                    "status": "pending",
+                    "start_time": null,
+                    "end_time": null,
+                    "day_of_week": "monday",
+                    "estimated_time": "300",
+                    "rate": 80,
+                    "hours": 3,
+                    "succeeding_rate": 60,
+                    "succeeding_hours": 1,
+                    "type": "hourly",
+                    "service_rate": 0.3,
+                    "total": 0,
+                    "latitude" : "102.10222",
+                    "longitude" : "122.10222",
+                    "car_model" : "Toyota Vios",
+                    "car_plate_no" : "234XsI",
+                    "is_valet": 0,
+                    "created_at": "2017-06-19 17:02:48",
+                    "expire_at": "2017-06-19 19:42:48",
+                    "visible": "yes",
+                    "slots_id": 2962,
+                    "floors_id": 35,
+                    "garages_id": 20,
+                    "owners_id": 33,
+                    "customers_id": 22,
+                    "residential_customers_id": null,
+                    "garage_info": {
+                        "id": 20,
+                        "name": "Robinsons malls",
+                        "description": null,
+                        "address": "test Address",
+                        "latitude": 1.0231231,
+                        "longitude": -12322.1230469,
+                        "type": "indoor",
+                        "category": "commercial",
+                        "active": "",
+                        "users_id": 33,
+                        "garage_rates_id": 22,
+                        "reviews": [],
+                        "primary_picture": {
+                            "id": 8,
+                            "extension": ".jpg",
+                            "name": "164d3026bd6d10fdb8764d07099bae89yp8kVxmn3HnB8cIjTplA6t5jExXwhTrxN2ow3aIH8uF60",
+                            "primary": "yes",
+                            "logo": "no",
+                            "garages_id": 20
+                        }
+                    },
+                    "customer": {
+                        "id": 22,
+                        "email": "john.smith@gmail.com",
+                        "information": {
+                            "id": 22,
+                            "first_name": "John",
+                            "last_name": "Smith",
+                            "middle_name": "Doe",
+                            "birth_date": "1900-01-01 00:00:00",
+                            "contact": "09929333933",
+                            "gender": "male",
+                            "address": "2A-1 Suburban Villas Cainta Rizal"
+                        },
+                        "primary": {
+                            "id": 15,
+                            "extension": ".jpg",
+                            "name": "65d26f300ea51692256e9c73deba617820170529180639000000vZfA6wniHIg1nkS3yVkzvZGylh3UMmUeXqs",
+                            "primary": "yes",
+                            "category": ""
+                        }
+                    },
+                    "owner": {
+                        "id": 33,
+                        "email": "carl.swift@gmail.com",
+                        "company": "ABC Corp.",
+                        "information": {
+                            "id": 31,
+                            "first_name": "Carl",
+                            "last_name": "Swift",
+                            "middle_name": "Bravo",
+                            "birth_date": "1984-10-11",
+                            "contact": "09058909990",
+                            "gender": "male",
+                            "address": "Pasig City"
+                        }
+                    },
+                    "billing_info": {
+                        "reservation_fee": 0,
+                        "parking_fee": 0,
+                        "service_fee": 0,
+                        "total": 0
+                    }
+                }
+            ]
+        }

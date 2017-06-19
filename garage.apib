@@ -1,0 +1,124 @@
+## Group Garage
+
+### Get list of Garages [GET all/garages?filter={filter}&latitude={latitude}&longitude={longitude}&api_token={api_token}]
+
+You can use this action to get list of garages.
+
++ Parameters
+    + filter (required) - Could be (all, valet, commercial, residential)
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200,
+            "data": [
+                {
+                    "id": 20,
+                    "name": "Robinsons malls",
+                    "description": null,
+                    "address": "test Address",
+                    "latitude": 1.0231231,
+                    "longitude": -12322.1230469,
+                    "type": "indoor",
+                    "category": "commercial",
+                    "active": "",
+                    "users_id": 33,
+                    "garage_rates_id": 22,
+                    "slots_count": 193,
+                    "day_of_week": "monday",
+                    "distance": 0,
+                    "reviews": [],
+                    "primary_picture": {
+                        "id": 8,
+                        "extension": ".jpg",
+                        "name": "164d3026bd6d10fdb8764d07099bae89yp8kVxmn3HnB8cIjTplA6t5jExXwhTrxN2ow3aIH8uF60",
+                        "primary": "yes",
+                        "logo": "no",
+                        "garages_id": 20
+                    },
+                    "current_schedule": {
+                        "id": 61,
+                        "opening_time": "07:00:00",
+                        "closing_time": "22:00:00",
+                        "day_of_week": "monday",
+                        "rate": "80.00",
+                        "hours": 3,
+                        "succeeding_rate": "60.00",
+                        "succeeding_hours": 1,
+                        "type": "hourly",
+                        "garage_rates_id": 22
+                    },
+                    "count_available_slot": [
+                        {
+                            "count": 193,
+                            "garages_id": 20
+                        }
+                    ]
+                },
+                {
+                    "id": 61,
+                    "name": "Megamall Parking",
+                    "description": "Indoor mall garage",
+                    "address": "SM Megamall Building A SM Megamall Building A, Bank Dr, Ortigas Center, Mandaluyong, Metro Manila, Philippines",
+                    "latitude": 14.585742,
+                    "longitude": 121.0571136,
+                    "type": "indoor",
+                    "category": "commercial",
+                    "active": "yes",
+                    "users_id": 49,
+                    "garage_rates_id": 28,
+                    "slots_count": 143,
+                    "day_of_week": null,
+                    "distance": 0.42847152326128,
+                    "reviews": [],
+                    "primary_picture": {
+                        "id": 46,
+                        "extension": ".png",
+                        "name": "ab116d5e2dd151311da9d10e7ddbeedeVXQO7qjd8zETdus1HBzW6hdmtNfi59Cxajaz7FSlHBFDf",
+                        "primary": "yes",
+                        "logo": "no",
+                        "garages_id": 61
+                    },
+                    "current_schedule": null,
+                    "count_available_slot": [
+                        {
+                            "count": 143,
+                            "garages_id": 61
+                        }
+                    ]
+                },
+                {
+                    "id": 65,
+                    "name": "Strata 100",
+                    "description": "Indoor Parking",
+                    "address": "strata 100",
+                    "latitude": 14.5859442,
+                    "longitude": 121.0611801,
+                    "type": "indoor",
+                    "category": "commercial",
+                    "active": "yes",
+                    "users_id": 49,
+                    "garage_rates_id": 41,
+                    "slots_count": 105,
+                    "day_of_week": null,
+                    "distance": 0.17658846590294,
+                    "reviews": [],
+                    "primary_picture": {
+                        "id": 62,
+                        "extension": ".png",
+                        "name": "0ba621eaa4b24c41c99d556f4b1546b3mPxRpdI4seX8Y09czEee2cy5rIf5hKsImftYpYdhWlXsA",
+                        "primary": "yes",
+                        "logo": "no",
+                        "garages_id": 65
+                    },
+                    "current_schedule": null,
+                    "count_available_slot": [
+                        {
+                            "count": 105,
+                            "garages_id": 65
+                        }
+                    ]
+                }
+            ]
+        }

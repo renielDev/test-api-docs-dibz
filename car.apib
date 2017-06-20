@@ -1,0 +1,195 @@
+## Group Cars
+
+### Get list of Car Brands [GET /car_brands?api_token={api_token}]
+
+You may use this action to get list of available Car brands.
+
++ Parameters
+    + api_token (required)
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200,
+            "data": [
+                {
+                    "id": 1,
+                    "name": "Audi"
+                },
+                {
+                    "id": 2,
+                    "name": "Bentley"
+                },
+                {
+                    "id": 3,
+                    "name": "BMW"
+                },
+                {
+                    "id": 4,
+                    "name": "Chery"
+                },
+                {
+                    "id": 5,
+                    "name": "Chevrolet"
+                }
+            ]
+        }
+
+### Get list of Car Models [GET /car_brands/{car_brand_id}/models?api_token={api_token}]
+
+You may use this action to get list of available Car Models for specific brand.
+
++ Parameters
+    + api_token (required)
+    + car_brand_id (required) - id of the car brand.
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200,
+            "data": [
+                {
+                    "id": 1,
+                    "name": "80",
+                    "car_brands_id": 1
+                },
+                {
+                    "id": 2,
+                    "name": "90",
+                    "car_brands_id": 1
+                },
+                {
+                    "id": 3,
+                    "name": "100",
+                    "car_brands_id": 1
+                },
+                {
+                    "id": 4,
+                    "name": "200",
+                    "car_brands_id": 1
+                }
+            ]
+        }
+
+### Get list of customer's Car [GET /car?api_token={api_token}]
+
+You may use this action to get list of cars of the customer.
+
++ Parameters
+    + api_token (required)
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200,
+            "data": {
+                "total": 1,
+                "per_page": 15,
+                "current_page": 1,
+                "last_page": 1,
+                "next_page_url": null,
+                "prev_page_url": null,
+                "from": 1,
+                "to": 1,
+                "data": [
+                    {
+                        "id": 1,
+                        "plate_no": "AAA-223",
+                        "model": {
+                            "id": 1,
+                            "name": "80",
+                            "car_brands_id": 1,
+                            "brand": {
+                                "id": 1,
+                                "name": "Audi"
+                            }
+                        },
+                        "users_id": 1,
+                        "car_models_id": 1
+                    }
+                ]
+            }
+        }
+
+### Add new car [POST /car?api_token={api_token}]
+
+You may use this action to add customer's cars.
+
++ `plate_no` (required)
++ `car_model_id` (required, numeric)
+
++ Parameters
+    + api_token
+
++ Request (application/json)
+
+        {
+            "plate_no": "AAA-223",
+            "car_model_id": "1"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200,
+            "data": {
+                "plate_no": "AAA-223",
+                "car_models_id": "1",
+                "users_id": 1,
+                "id": 3
+            }
+        }
+
+### Update car [POST /car/{car_id}?api_token={api_token}]
+
+You may use this action to update an existing car of the customer.
+
++ `_method` (required) - value `PUT`
++ `plate_no` (required)
++ `car_model_id` (required, numeric)
+
++ Parameters
+    + api_token
+    + car_id (required, numeric)
+
++ Request (application/json)
+
+        {
+            "plate_no": "AAA-223",
+            "car_model_id": "1",
+            "_method": "PUT"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200
+        }
+
+### Remove car [POST /car/{car_id}?api_token={api_token}]
+
+You may use this action to remove car of the customer.
+
++ `_method` (required) - value `DELETE`
+
++ Parameters
+    + api_token
+    + car_id (required, numeric)
+
++ Request (application/json)
+
+        {
+            "_method": "DELETE"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200
+        }

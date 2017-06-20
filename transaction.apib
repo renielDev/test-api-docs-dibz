@@ -3,6 +3,7 @@
 ### Reserve a parking in commercial garage [POST /parking/reserve?api_token={api_token}]
 
 You may use this action to make a reservation request to a commercial garage.
+To get live updates of a specific transaction. Listen to `customer-transaction-status-{garage_id}-{transaction_id}`
 
 + `latitude` - (required, numeric)
 + `longitude` - (required, numeric)
@@ -178,4 +179,52 @@ You may use this action to get list of customer's transaction.
                     }
                 }
             ]
+        }
+
+### Apply promo code [POST /parking/apply/promo?api_token={api_token}]
+
+You may use this action to apply promo code to an on-going transaction.
+
++ `transaction_id` - (required, numeric)
++ `promo_code` - (required, numeric)
+
++ Parameters
+    + api_token (required)
+
++ Request (application/json)
+
+        {
+            "transaction_id" : 1,
+            "promo_code" : "SamplePromoCode"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200
+        }
+
+### Hide Transactions from the list [POST /user/transaction/visibility?api_token={api_token}]
+
+You may use this action to hide transactions of the customers in their list.
+
++ `transaction_ids[]` - (required, array)
++ `visible` - (required) values can be (no)
+
++ Parameters
+    + api_token (required)
+
++ Request (application/json)
+
+        {
+            "transaction_ids[]" : 1,
+            "visible" : "no"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200
         }

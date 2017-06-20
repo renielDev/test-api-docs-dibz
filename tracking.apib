@@ -1,0 +1,26 @@
+## Group Tracking
+
+### Tracking User [POST /user/tracking?api_token={api_token}]
+
+You may use this action to send current location of the customer for tracking.
+Listen to `user-tracking-{user_id}` to track specific user.
+
++ `latitude` (required)
++ `longitude` (required)
+
++ Parameters
+    + api_token (required)
+
++ Request (application/json)
+
+        {
+            "latitude" : "102.33221",
+            "longitude" : "-22.1637"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200
+        }

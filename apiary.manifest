@@ -4,3 +4,5 @@ user.apib
 forgot_password.apib
 payments_points.apib
 transaction.apib
+tracking.apib
+car.apib

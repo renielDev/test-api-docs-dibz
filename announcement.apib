@@ -38,3 +38,118 @@ You may use this action to get list of announcements.
                 ]
             }
         }
+
+
+        ## Group Announcement
+
+        ### Get list of Announcements [GET /announcements]
+
+        You may use this action to get list of announcements.
+
+        + Response 200 (application/json)
+
+                {
+                    "status": true,
+                    "code": 200,
+                    "data": {
+                        "total": 2,
+                        "per_page": 15,
+                        "current_page": 1,
+                        "last_page": 1,
+                        "next_page_url": null,
+                        "prev_page_url": null,
+                        "from": 1,
+                        "to": 2,
+                        "data": [
+                            {
+                                "id": 1,
+                                "title": "First Announcement",
+                                "description": "Some description",
+                                "active": "yes",
+                                "expire_at": "2017-06-12 00:00:00",
+                                "created_at": "2017-06-01 22:27:18"
+                            },
+                            {
+                                "id": 2,
+                                "title": "Second Announcement",
+                                "description": "Some description",
+                                "active": "yes",
+                                "expire_at": "2017-06-08 00:00:00",
+                                "created_at": "2017-04-26 19:17:53"
+                            }
+                        ]
+                    }
+                }
+
+## Notifications
+
+### Get list of Notifications [GET /user/notifications?api_token={api_token}]
+
+You may use this action to get list of notifications. To get live updates if there are
+new notifications, listen to `broadcast-new-notification`.
+
++ Parameters
+    + api_token (required)
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200,
+            "data": {
+                "count_unread": 1,
+                "notifications": {
+                    "total": 1,
+                    "per_page": 15,
+                    "current_page": 1,
+                    "last_page": 1,
+                    "next_page_url": null,
+                    "prev_page_url": null,
+                    "from": 1,
+                    "to": 1,
+                    "data": [
+                        {
+                            "id": "80a2fd1e-0265-4d88-a840-059427ceb18e",
+                            "type": "App\\Notifications\\UniversalUpdates",
+                            "notifiable_id": 1,
+                            "notifiable_type": "App\\Models\\User",
+                            "data": {
+                                "title": "Test",
+                                "message": "First announcement."
+                            },
+                            "read_at": NULL,
+                            "created_at": "2017-06-27 22:21:21",
+                            "updated_at": "2017-06-27 22:32:10"
+                        }
+                    ]
+                }
+            }
+        }
+
+### Mark all Unread messages as read [POST /user/notifications/read?api_token={api_token}]
+
+You may use this action to mark all unread notifications as read.
+
++ Parameters
+    + api_token (required)
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200
+        }
+
+### Remove all notifications [POST /user/notifications/remove?api_token={api_token}]
+
+You may use this action to clear all notifications.
+
++ Parameters
+    + api_token (required)
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "code": 200
+        }
